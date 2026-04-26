@@ -45,6 +45,7 @@ SmartPdM-Framework/
 
 The included index.html provides a 100% client-side inference engine using **TensorFlow.js**.
 
+- **Live Link:** https://smart-pd-m-framework.vercel.app
 - **Dynamic Routing:** Instantly switch between Lab and Shop-optimized weights.
 - **Privacy First:** All vibration data is processed locally in the browser.
 
