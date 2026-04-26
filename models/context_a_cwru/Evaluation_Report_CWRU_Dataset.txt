@@ -1,0 +1,11 @@
+FRAMEWORK EVALUATION REPORT (MODEL-CENTRIC) - Dataset: CWRU_Dataset
+============================================================
+              precision    recall  f1-score   support
+
+ Inner_Fault       1.00      0.97      0.99        40
+      Normal       1.00      1.00      1.00        40
+ Outer_Fault       0.98      1.00      0.99        40
+
+    accuracy                           0.99       120
+   macro avg       0.99      0.99      0.99       120
+weighted avg       0.99      0.99      0.99       120
