@@ -8,85 +8,48 @@
 
 ## 📖 Abstract
 
-Predictive Maintenance (PdM) is a critical component of Industry 4.0. However, bridging the gap between theoretical consensus and practical Deep Learning architecture design remains a challenge. This paper proposes a novel "Model-Centric" pipeline.
+Predictive Maintenance (PdM) is a cornerstone of Industry 4.0. This research proposes a novel "Model-Centric" pipeline that bridges the gap between theoretical consensus and practical Deep Learning deployment. We utilize bibliometric topology on Web of Science (WoS) data to identify research hotspots, followed by Structural Equation Modeling (SEM) to quantitatively validate the necessity of hybrid AI architectures. Driven by these findings, we propose the **WDCNN-BiLSTM-DualAttn** framework. Experimental results demonstrate a state-of-the-art accuracy of **97.50%** on the CWRU dataset and a robust **89.44%** on the highly noisy Paderborn dataset, achieved through Local Z-Score Normalization.
 
-First, we conduct a bibliometric analysis and keyword topology mapping using Web of Science (WoS) data to identify research hotspots. Second, Structural Equation Modeling (SEM) is applied to quantitatively validate the necessity of hybrid AI architectures. Driven by the SEM findings, we propose a Wide-Kernel Convolutional Neural Network combined with Bidirectional LSTM and Dual Attention Mechanism (**WDCNN-BiLSTM-DualAttn**). Finally, a Dataset Discovery approach is employed to benchmark the proposed framework.
+## 📊 Empirical Benchmarking Results
 
-Experimental results demonstrate that our framework achieves a state-of-the-art accuracy of **97.50%** on the CWRU dataset and robustly generalizes with **89.22%** on the highly noisy Paderborn dataset, utilizing Local Z-Score Normalization.
+Our framework utilizes a **Dataset Discovery** approach to ensure real-world reliability across different industrial noise profiles.
 
-## 🎯 Core Contributions
+| **Industrial Context**    | **Dataset Source**   | **Signal Complexity**          | **Accuracy** |
+| ------------------------- | -------------------- | ------------------------------ | ------------ |
+| **Context A: Laboratory** | CWRU Bearing Data    | Low-Noise                      | **97.50%**   |
+| ---                       | ---                  | ---                            | ---          |
+| **Context B: Shop Floor** | Paderborn University | **High-Noise / Variable Load** | **89.44%**   |
+| ---                       | ---                  | ---                            | ---          |
 
-This research moves beyond standard "trial-and-error" deep learning by establishing a mathematically and theoretically grounded pipeline:
+**Scientific Note:** Achieving ~89.44% accuracy on the Paderborn dataset is highly significant for industrial deployment. It demonstrates the framework's ability to generalize across variable motor speeds and torque levels without specific fine-tuning.
 
-- **Knowledge Topology:** Extraction of research topological networks from Web of Science (WoS) metadata to objectively identify the convergence of Deep Learning and Fault Diagnosis.
-- **SEM Validation:** Mathematical justification (Path Coefficient ![](data:image/png;base64,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)) proving the necessity of integrating spatial (CNN), temporal (LSTM), and focus (Attention) layers for diagnostic robustness.
-- **Advanced Neural Architecture:** Proposal of the WDCNN-BiLSTM-DualAttn architecture, utilizing a Wide-Kernel (64) CNN as an initial morphological low-pass filter to suppress mechanical background noise.
-- **Generalization Benchmark:** Implementation of a "Dataset Discovery" mechanism testing the framework on both Low-Noise (CWRU) and High-Noise (Paderborn) datasets using Local Z-Score Normalization to ensure load/speed invariance.
+## 🧠 Core Methodology
 
-## 🧠 Framework Architecture: WDCNN-BiLSTM-DualAttn
+- **Knowledge Topology:** Identification of spatial-temporal convergence in global PdM research.
+- **SEM Validation:** Mathematical proof (![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAAAcCAYAAADst9g0AAAHxElEQVR4AeyYeWzUVRDHd3tICwSVthxtaZe2GqmIkkJFMJgQUCh4gqICaQwoaQ0J/xATCMGrQeQP1GhQFK+ACRY5IqYcEbEG70ohSjh608PSliJSWm2X+vm+/H7rbrs9NkBrzDYz+96bNzNvZt68eb/XEEfwr08jEAx4n4bb4QgGPBjwPo5AHy/XZYbHx8dHJiYmZoOF4ImEhIRlovWxff+75fwG3OVyjQgNDc1tb2+/EB0dPTE8PDzd6XTODAsLW0sEnGB/gpMEmAYeBWvAWux9Zfjw4YMCMUr8yK4C6yw8ip47vHW4XK7lJNo+5hfTzhPSXwkeIvlu8uZNSUkZAv9rzJ0Da+D9AZzizaN+p4CnpaWFX758+fmQkJAXKyoqthQUFLQWFRVdIPj54P2jR48eJsH+Qpx5hLW3glnl5eUjW1pakrDXFRkZuTMmJmYw9B4hLi4uPiIi4hCMqSRTMkkVS0Ll4d/bSUlJ10M3gN4B0O9l8B5trpD+c+C6ysrK07QGJNPa2roD+cFutztOdpGwq+HfNWrUqAcMk/XTKeANDQ1zCXZtaWnpTxaPaRAOpROGEZ1koPcJyDEWWoFje3HqO/qO2traJtr10CYNGjRoDv1ugcyM5KRuxJ9mgpKtZKqrqxuH/DIERxKwgbTeUADvxxDeB5ewQaNYO4++B4jJLAbp6NjIRjTTdxC/A4z3EMuVlt0i+36lyBiYpoMfMtsOGrDoUxl8y2J1tP0CbW1tE1k4HTwBeuwjINWMG7F7Hm0Y2CUQZAVnNgxbS0pK/qB1cDKOIbscfJlsrxfNRmi5ZWVlmfi9GNysDbLn1FJGIuBZRL/RsoOuAdknO9Ow+zZD4ccnW9mNVITbUHyGOQ9gZAbKbofwKtgG9heksTCmOCtp/cF4Sl6UvwmLps14kr6brPyN1oDKJuXzXaH6htjLH+J1I6xjwbP0W2g7QhgGK0kM3SfgTNxC0I+wawuolW6wHWxD0QbmHmYjjhipfvrBBnNRYc8FbxMYy9Gz0AZSErq8PK3NGA/f32Aqvn3DxbaLtoF2re4v6D7AmoOZXwGeAAvhW+TNR7x0pynoTc3Nza3ewsjaieFJAu+AM+9MZ+d/xoH9DObSPko7HSynr2PY4xcKmzUfw4oxrKK3KH7JeRvrr48d4f7olqOq5UOYl/M0nQHfhkK9ARyIrsc5uXPI6ofYpDsZZ3J/rWfOx0f8zgQLSbZb4ZtHgFfX19e/ZQcdmk6N7jdEfQE5kxjojrdnPAGPjY3VLsiYEpTXULd2Ycx2Wt3mOxFYRC2Ppe0JdsNwN4vIiV4hTkyOioragdw1BQKgCzHCWmSzXcO56IqhfcV8Fps/ib4BfDjGpiwkDgcguOErgucN+k9z0c6nDRg8AefmTkT6PMrP0/oACyt7YgjMCJ8JPwM2qEUbFghyo9cGWjv9LN0jCT8uwaTyc4nA6UJjaKCdOd1N1zG6CzSAD3nYlm8G1g9y5erC/wSn0t48kXqFnoATzAlIHAd1u9L8CyySwMjNbssouv0D2GFqIs76lBY+1eR4DFbVM6cvFrp+Qcl00e+MRWQNo9t6GM3mVKdYUx2bYZSoSIiNoEpH6NChQ33KETE1FQE+xRU2h+ez0MlCY6lHvxiq1w+fTHpM6MV0HGfKvKb8drmYpnIsNwWKkvOr0JdoDMdWc3naUwRcQZKdFTxougwo9is4v9py3bU8pBYyv4ck2025jabfEexLUjqVCAk8wmSDh49Aq0Q7WPe0TTQZjsIoiKq3A+wJu2VhHbEpOPmmXfPsOX8tfD9CXxMoWnKIdQtKiHPYqsvRm1GOydn8kydP/qkJXWpc2o9x7GcydoIOlTtaPVpUOpSdDH1Ap7tAFOzRe0NfHZ9VV1frZIis4NlrH6OOX6QEK+B6hF2HjI9O7IxD6HfohbQGTMBVvyG6OAIzoBrjaB1k6RiE9CrLIdO3idYTyilqX02gKLmedKPzNHZ+ik0zeJ7rkjcijO+ho8/XT2gN8CUxHfo28XN6xhkiP/iqS72MufsYGl+ZHw6fvpW/ICsPQ3fwWFHi7INPL0xTSq0X41PM11ANdHnSNfABv0rWybQGkpOT9bk4DfltbEqpIfJjAk6gJ7DgS2A0WXGIQG8iM2SYHHiGYLzQF5ca9vQEbQRkFdhIGcnDTr0XcrA7B8EsHPM8ZigF+vJQCTyM02phcTiKi4v1qFvKYAnyH+HnUvTtRUcFQczkS8Q8zauqqlQmNkDPg2cdvNnMazNc6MuArwgdBkiEQviWQn8dvhxwAbx7mDxDbHXadXIYOkwNd9JLBfVsfxaGB+mvaWpqWoCi8eBBxh4B+v0KOHqOwGYQpCyc/At7v6Z2JmCnz2cl5e8UtNHgLPrmCW8bDu0gMinIbkFPA3qWSKd02zxqLb4JBPJLeM7Cn83TfwwJ6CkR4gPbkc/lVNwM3/eg7FqIfEbHtUNUv2EYCbP53EHZeRhrVJ9Q9F8FNw4WgNv5bNtv/QMrIFslI1npAFW33f4UePPBn9/dSa+qqmpA1+fgdgJ9Cn2dEjWEmpbIDtZwMTTAEIRrHAFOSYjqty6ITrsR0NpB5l5FIIQS8g4lRP/Q75VAkOnKImC+Uq5MRVA6kAgEAx5ItK4CbzDgVyGIgagIBjyQaF0F3n8AAAD//zozIAsAAAAGSURBVAMARLsndZG1giMAAAAASUVORK5CYII=)) justifying the integration of CNN, LSTM, and Attention layers.
+- **WDCNN-BiLSTM-DualAttn:** A wide-kernel architecture designed as a morphological filter to suppress mechanical background noise.
+- **Local Z-Score Normalization:** Ensures load and speed invariance during real-time inference.
 
-The proposed model accepts a ![](data:image/png;base64,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) raw vibration acceleration window and processes it through four distinct blocks:
-
-- **Block 1: Wide-Kernel CNN (WDCNN):** Uses a large kernel (size=64, stride=8) to capture long-period structural anomalies and reject high-frequency noise.
-- **Block 2: Deep Feature Extraction:** Standard convolutional layers (size=16) to learn fine-grained mechanical features.
-- **Block 3: Temporal Recurrency:** A Bidirectional LSTM layer to capture the time-series dependencies and periodic impact signatures of rolling element bearings.
-- **Block 4: Dual Attention Mechanism:** A novel combination of GlobalMaxPooling1D (to catch sharp fracture peaks) and GlobalAveragePooling1D (to retain underlying signal energy trends), weighted by a custom attention matrix.
-
-## 📊 Experimental Results
-
-The framework was benchmarked automatically via the pipeline.py Dataset Discovery module.
-
-| **Industrial Context**      | **Dataset Used**     | **Sampling Rate** | **Noise Profile** | **Test Accuracy** |
-| --------------------------- | -------------------- | ----------------- | ----------------- | ----------------- |
-| **Context A (Lab Setting)** | CWRU Bearing Data    | 12 kHz            | Clean / Low       | **97.50%**        |
-| **Context B (Shop Floor)**  | Paderborn University | 64 kHz            | Heavy / High      | **89.22%**        |
-
-_Note: The high accuracy on the Paderborn dataset without specific fine-tuning demonstrates the exceptional noise-resilience of the Wide-Kernel and Dual Attention combination._
-
-## 💻 Repository Structure & Reproducibility
-
-This repository contains the complete, replicable codebase for the CSoNet 2026 submission.
+## 💻 Repository Structure
 
 SmartPdM-Framework/  
 ├── src/  
-│ ├── pipeline.py # Full Python research pipeline (Generates Fig 1-12 & Models)  
+│ ├── pipeline.py # Full Python research pipeline (WoS + SEM + Training)  
 │ └── index.html # Industrial Web Demo (TF.js Frontend)  
 ├── models/  
-│ ├── context*a_cwru/ # Exported TF.js weights (97.50% Acc)  
-│ └── context_b_paderborn/ # Exported TF.js weights (89.22% Acc)  
-├── Research_Project_AI_PDU/ # Output directory for generated artifacts  
-│ ├── Table_1_SEM_Results.csv # SEM Structural Path validation  
-│ ├── Fig*\*.png # All generated manuscript figures  
-│ └── Model\_\*.keras # Raw trained Keras models  
+│ ├── context_a_cwru/ # Exported TF.js weights (97.50% Acc)  
+│ └── context_b_paderborn/ # Exported TF.js weights (89.44% Acc)  
 └── README.md
-
-### How to Run the Pipeline
-
-The entire research methodology-from generating bibliometric charts and SEM diagrams to training the dual-context models-is consolidated into a single script.
-
-\# 1. Install required scientific libraries  
-pip install kagglehub wordcloud networkx seaborn scikit-learn tensorflow scipy semopy graphviz  
-<br/>\# 2. Execute the comprehensive pipeline  
-python src/pipeline.py
-
-_(Artifacts, models, and figures will be exported automatically to the Research_Project_AI_PDU folder)._
 
 ## 🌐 Live Industrial Demo
 
-To prove the deployability of this framework on Edge-AI environments, we have included a client-side Web Application powered by **TensorFlow.js**.
+The included index.html provides a 100% client-side inference engine using **TensorFlow.js**.
 
-The demo features:
+- **Dynamic Routing:** Instantly switch between Lab and Shop-optimized weights.
+- **Privacy First:** All vibration data is processed locally in the browser.
 
-- **Dynamic Model Routing:** Instantly switch between Lab (CWRU) and Shop (PAD) neural weights based on your environment.
-- **100% Client-Side Privacy:** Real-time signal inference in the browser. No sensor data is sent to external servers.
-- **Live Pre-processing:** Implements the exact Local Z-Score normalization used in training.
+## ✉️ Contact
 
-**\[View Live Interactive Demo Here\] (Insert Vercel/Render Link)**
-
-## ✉️ Contact & Citation
-
-If you find this framework useful for your research, please consider citing our CSoNet 2026 paper (Citation details pending publication).
-
-For academic inquiries, collaboration, or data access, please contact:
+For academic inquiries or collaboration:
 
 - **Vo Thi Kim Anh** - [vothikimanh@tdtu.edu.vn](mailto:vothikimanh@tdtu.edu.vn) | [thi.kim.anh.vo.st@vsb.cz](mailto:thi.kim.anh.vo.st@vsb.cz)
