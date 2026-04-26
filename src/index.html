@@ -164,10 +164,10 @@
         let model = null;
         
         // Exact mapping to your Pipeline V7/V9 Vercel assets folder
-        const GITHUB_BASE = "https://github.com/vothikimanh1007/SmartPdM-Framework-/";
+        const GITHUB_BASE = "https://raw.githubusercontent.com/vothikimanh1007/SmartPdM-Framework-/";
         const CONTEXT_MODELS = {
-            'A': GITHUB_BASE + 'models/context_a_cwru/label_map_CWRU_Dataset.json',
-            'B': GITHUB_BASE + 'models/context_b_paderborn/label_map_Paderborn_Dataset.json'
+            'A': GITHUB_BASE + 'models/context_a_cwru/model.json',
+            'B': GITHUB_BASE + 'models/context_b_paderborn/model.json'
         };
 
         async function loadModel(context) {
